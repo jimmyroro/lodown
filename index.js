@@ -184,8 +184,9 @@ module.exports.each = each;
 module.exports.unique = unique;
 
 /**
- * filter: loops over an array and passes each element through a given function, then returns a new array
+ * filter: loops over an array and passes each element, index, and collection through a given function, then returns a new array
  * for all the elements that calling the function proved true
+ * 
  * 
  * @param: {Array} array: an array
  * 
@@ -207,7 +208,7 @@ module.exports.unique = unique;
 module.exports.filter = filter;
 
 /**
- * reject: loops over an array and passes each element through a given function, then returns a new array
+ * reject: loops over an array and passes each element, index, and collection through a given function, then returns a new array
  * for all the elements that calling the function proved false
  * 
  * @param: {Array} array: an array
@@ -232,7 +233,7 @@ module.exports.filter = filter;
 module.exports.reject = reject;
 
 /**
- * partition: loops over an array and passes each element through a given function, then returns an array that has
+ * partition: loops over an array and passes each element, index, and collection through a given function, then returns an array that has
  * two sub arrays: the first contains all values for which the function returned true, the second is the false ones
  * 
  * @param: {Array} array: an array
@@ -291,11 +292,14 @@ module.exports.map = map;
  */
  
  function pluck(array,property) {
-    for (let x = 0; x < array.length; x++) {
-        for( let key in array[x]) {
-            return array.map(i => i[key]); 
-        }
-    }
+   let pluckedArray = [];
+    map(array, function (element,index,array) {
+       if (element[property] !== undefined) {
+          pluckedArray.push(element[property]);
+       } 
+    });
+    return pluckedArray;
+
 }
 
 module.exports.pluck = pluck;
@@ -376,14 +380,14 @@ module.exports.every = every;
 module.exports.some = some;
 
 /**
- * reduce: Call <function> for every element in <collection>, using a starting value of <seed>, or the first element of the array.
- * it stores that value and uses it for the next iteration, until will reduces the array into a single value
+ * reduce: Call <function> for every element in <collection>, using a starting value of <seed>, or the first element of the array if no seed is given.
+ * it stores that value and uses it for the next iteration, until it will reduce the array into a single value.
  * 
  * @param: {Array} array: an array
  * 
  * @param: {Function} fun: function
  *  
- * @param: {Number, Array, or Object} seed: optional, it is the first value passed to the function
+ * @param: {Any datatype} seed: optional, it is the first value passed to the function
  * 
  * @return: {Any datatype}: a single value composed of all the values originally in the array
  */

@@ -1,6 +1,6 @@
 {
   "name": "lodown-jimmyroro",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "description": "my first npm package",
   "main": "index.js",
   "directories": {
@@ -18,5 +18,12 @@
   "bugs": {
     "url": "https://github.com/jimmyroro/lodown/issues"
   },
-  "homepage": "https://github.com/jimmyroro/lodown#readme"
+  "homepage": "https://github.com/jimmyroro/lodown#readme",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "i": "^0.3.6",
+    "istanbul": "^0.4.5",
+    "mocha": "^7.1.0",
+    "sinon": "^9.0.0"
+  }
 }
